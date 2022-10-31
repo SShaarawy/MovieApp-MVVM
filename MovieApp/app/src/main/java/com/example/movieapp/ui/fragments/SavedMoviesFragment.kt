@@ -34,6 +34,7 @@ class SavedMoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         binding.rvSavedMovies.apply {
             adapter = moviesAdapter
             layoutManager = LinearLayoutManager(context)
@@ -46,7 +47,7 @@ class SavedMoviesFragment : Fragment() {
             findNavController().navigate(R.id.action_savedMoviesFragment_to_movieFragment, bundle)
         }
 
-        //Swiping left or right movements
+        //Swipping left or right movements
         val itemTouchHelperCallBack = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT

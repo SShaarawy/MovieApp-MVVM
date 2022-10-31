@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.adapters.MoviesAdapter
@@ -33,12 +34,13 @@ class MovieListFragment : Fragment() {
 
         binding.rvMovieList.apply {
             adapter = moviesAdapter
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context,2)
         }
 
         sharedViewModel.movieList.observe(viewLifecycleOwner) {
             moviesAdapter.differ.submitList(it.results)
         }
+
 
         moviesAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {

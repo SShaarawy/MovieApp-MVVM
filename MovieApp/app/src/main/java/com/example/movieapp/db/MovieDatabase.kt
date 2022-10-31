@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 import com.example.movieapp.model.Result
 
 @Database(entities = [Result::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class MovieDatabase: RoomDatabase() {
 
     abstract fun getMovieDao(): MovieDao

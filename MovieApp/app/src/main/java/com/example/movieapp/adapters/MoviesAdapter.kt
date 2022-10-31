@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.movieapp.R
 import com.example.movieapp.databinding.ItemMovieBinding
 import com.example.movieapp.model.Result
@@ -43,7 +44,11 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
         holder.apply {
 
-            Glide.with(itemView).load("http://image.tmdb.org/t/p/w500/"+ movie.poster_path).into(binding.ivMovieImage)
+            Glide.with(itemView)
+                .load("http://image.tmdb.org/t/p/w500/"+ movie.poster_path)
+                .transform(RoundedCorners(90))
+                .into(binding.ivMovieImage)
+
             binding.tvVote.text = itemView.resources.getString(R.string.vote,movie.vote_average.toString())
 
             val layout = LayoutInflater.from(itemView.context).inflate(R.layout.item_dialog, null)
