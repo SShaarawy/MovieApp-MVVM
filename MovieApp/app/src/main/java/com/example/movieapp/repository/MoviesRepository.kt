@@ -2,22 +2,30 @@ package com.example.movieapp.repository
 
 import com.example.movieapp.api.MoviesApi.retrofitService
 import com.example.movieapp.db.MovieDatabase
-import com.example.movieapp.model.Details
-import com.example.movieapp.model.Movie
+import com.example.movieapp.model.*
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
-import com.example.movieapp.model.Result
 
 class MoviesRepository(private val db: MovieDatabase) {
 
-    suspend fun getMovieList(): Response<Movie> {
+    suspend fun getMovieList(): Response<Movies> {
         return retrofitService.getMovies()
     }
-    suspend fun searchNews(query: String): Response<Movie> {
+
+    suspend fun searchMovie(query: String): Response<Movies> {
         return retrofitService.searchMovie(query = query)
     }
-    suspend fun getMovieDetails(movieId: Int): Response<Details> {
+
+    suspend fun getMovieDetails(movieId: Int): Response<MovieDetails> {
         return retrofitService.getMovieDetails(movieId)
+    }
+
+    suspend fun getGenreMoviesList(genreId: String): Response<Movies> {
+        return retrofitService.getGenreMoviesList(withGenres = genreId)
+    }
+
+    suspend fun getGenres(): Response<GenreList> {
+        return retrofitService.getGenres()
     }
 
     suspend fun upsert(movie: Result) {

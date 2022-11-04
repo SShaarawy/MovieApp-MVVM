@@ -8,16 +8,19 @@
     <fragment
         android:id="@+id/movieListFragment"
         android:name="com.example.movieapp.ui.fragments.MovieListFragment"
-        android:label="fragment_movie_list"
+        android:label="Movies"
         tools:layout="@layout/fragment_movie_list" >
         <action
             android:id="@+id/action_movieListFragment_to_movieFragment"
             app:destination="@id/movieFragment" />
+        <action
+            android:id="@+id/action_movieListFragment_to_movieOverviewFragment"
+            app:destination="@id/movieOverviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/savedMoviesFragment"
         android:name="com.example.movieapp.ui.fragments.SavedMoviesFragment"
-        android:label="fragment_saved_movies"
+        android:label="Saved"
         tools:layout="@layout/fragment_saved_movies" >
         <action
             android:id="@+id/action_savedMoviesFragment_to_movieFragment"
@@ -26,7 +29,7 @@
     <fragment
         android:id="@+id/searchMovieFragment"
         android:name="com.example.movieapp.ui.fragments.SearchMovieFragment"
-        android:label="fragment_search_movie"
+        android:label="Finder"
         tools:layout="@layout/fragment_search_movie" >
         <action
             android:id="@+id/action_searchMovieFragment_to_movieFragment"
@@ -37,6 +40,15 @@
         android:name="com.example.movieapp.ui.fragments.MovieFragment"
         android:label="fragment_movie"
         tools:layout="@layout/fragment_movie" >
+        <argument
+            android:name="movie"
+            app:argType="com.example.movieapp.model.Result" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieOverviewFragment"
+        android:name="com.example.movieapp.ui.fragments.MovieOverviewFragment"
+        android:label="fragment_movie_overview"
+        tools:layout="@layout/fragment_movie_overview" >
         <argument
             android:name="movie"
             app:argType="com.example.movieapp.model.Result" />

@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
+import android.widget.Toast
+import android.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
+import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentMovieBinding
 import com.example.movieapp.ui.MoviesViewModel
+import com.google.android.material.appbar.CollapsingToolbarLayout
 
 
 class MovieFragment : Fragment() {
@@ -32,6 +36,9 @@ class MovieFragment : Fragment() {
 
         val movie = args.movie
 
+        val collToolbar = requireActivity().findViewById<CollapsingToolbarLayout>(R.id.colltoolbar)
+        collToolbar.title = movie.title
+
         sharedViewModel.getMovieDetails(movie.id)
 
         binding.webView.apply {
@@ -44,6 +51,7 @@ class MovieFragment : Fragment() {
         }
         binding.fab.setOnClickListener {
             sharedViewModel.saveMovie(movie)
+            Toast.makeText(requireContext(),"Movie is saved",Toast.LENGTH_SHORT).show()
         }
     }
 }

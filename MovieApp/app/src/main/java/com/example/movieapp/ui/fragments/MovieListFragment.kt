@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.R
+import com.example.movieapp.adapters.GenresAdapter
 import com.example.movieapp.adapters.MoviesAdapter
 import com.example.movieapp.databinding.FragmentMovieListBinding
 import com.example.movieapp.ui.MoviesViewModel
@@ -17,13 +18,14 @@ import com.example.movieapp.ui.MoviesViewModel
 class MovieListFragment : Fragment() {
     private lateinit var binding: FragmentMovieListBinding
     private val moviesAdapter = MoviesAdapter()
+    private val genresAdapter = GenresAdapter()
 
     private val sharedViewModel: MoviesViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
 
         binding = FragmentMovieListBinding.inflate(layoutInflater, container,false)
         return binding.root
@@ -37,10 +39,18 @@ class MovieListFragment : Fragment() {
             layoutManager = GridLayoutManager(context,2)
         }
 
+        binding.rvGenres.apply {
+            adapter = genresAdapter
+            layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+        }
+
+        sharedViewModel.genres.observe(viewLifecycleOwner) {
+            genresAdapter.differ.submitList(it.genres)
+        }
+
         sharedViewModel.movieList.observe(viewLifecycleOwner) {
             moviesAdapter.differ.submitList(it.results)
         }
-
 
         moviesAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
@@ -48,6 +58,11 @@ class MovieListFragment : Fragment() {
             }
             findNavController().navigate(R.id.action_movieListFragment_to_movieFragment, bundle)
         }
+
+        genresAdapter.setOnItemClickListener {
+            sharedViewModel.getGenreMoviesList(it.toString())
+        }
+
 
     }
 }

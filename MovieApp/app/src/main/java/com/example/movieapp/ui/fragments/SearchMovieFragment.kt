@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.adapters.MoviesAdapter
-import com.example.movieapp.databinding.FragmentMovieListBinding
 import com.example.movieapp.databinding.FragmentSearchMovieBinding
 import com.example.movieapp.ui.MoviesViewModel
 import kotlinx.coroutines.Job
@@ -38,9 +37,10 @@ class SearchMovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+
         binding.rvSearchMovies.apply {
             adapter = moviesAdapter
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context,2)
         }
 
         var job: Job? = null

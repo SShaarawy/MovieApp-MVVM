@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
         <item android:id="@+id/movieListFragment"
             android:title="@string/movies"
             android:icon="@drawable/ic_movies"/>
@@ -8,5 +9,5 @@
             android:icon="@drawable/ic_favorite"/>
         <item android:id="@+id/searchMovieFragment"
             android:title="@string/search_movie"
-            android:icon="@drawable/ic_search"/>
+            android:icon="@drawable/ic_search" />
 </menu>

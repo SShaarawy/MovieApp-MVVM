@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/background.xml" value="0.1355" />
+        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/btn_background.xml" value="0.1" />
+        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/btn_background2.xml" value="0.1" />
+        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/button_background.xml" value="0.1625" />
+        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/button_bg_color.xml" value="0.108" />
+        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/button_text_color.xml" value="0.108" />
         <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_all_news.xml" value="0.1" />
         <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_breaking_news.xml" value="0.1" />
         <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_favorite.xml" value="0.1" />
@@ -11,14 +16,17 @@
         <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_movies.xml" value="0.1605" />
         <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/ic_search.xml" value="0.1" />
         <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/drawable/image_background.xml" value="0.1" />
-        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
-        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_movie.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_movie.xml" value="0.1" />
         <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_movie_list.xml" value="0.1" />
+        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_movie_overview.xml" value="0.1" />
         <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_saved_movies.xml" value="0.17074275362318841" />
-        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_search_movie.xml" value="0.25" />
+        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_search_movie.xml" value="0.33" />
         <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/layout/item_dialog.xml" value="0.22" />
+        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/layout/item_genre.xml" value="0.33" />
         <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/layout/item_movie.xml" value="0.1" />
-        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
+        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.18" />
+        <entry key="..\:/Users/Ali Ekber/AndroidStudioProjects/MovieApp/app/src/main/res/menu/toolbar_menu.xml" value="0.203125" />
       </map>
     </option>
   </component>

@@ -1,24 +1,26 @@
 package com.example.movieapp.ui
 
 import androidx.lifecycle.*
-import com.example.movieapp.model.Details
-import com.example.movieapp.model.Movie
-import com.example.movieapp.model.Result
+import com.example.movieapp.model.*
 import com.example.movieapp.repository.MoviesRepository
 import kotlinx.coroutines.launch
 
 class MoviesViewModel(val moviesRepository: MoviesRepository) : ViewModel() {
 
-    private val _movieList = MutableLiveData<Movie>()
-    val movieList: LiveData<Movie> = _movieList
+    private val _movieList = MutableLiveData<Movies>()
+    val movieList: LiveData<Movies> = _movieList
 
-    private val _searchMovie = MutableLiveData<Movie>()
-    val searchMovie: LiveData<Movie> = _searchMovie
+    private val _searchMovie = MutableLiveData<Movies>()
+    val searchMovie: LiveData<Movies> = _searchMovie
 
-    private val _movieDetails = MutableLiveData<Details>()
-    val movieDetail: LiveData<Details> = _movieDetails
+    private val _movieDetails = MutableLiveData<MovieDetails>()
+    val movieDetail: LiveData<MovieDetails> = _movieDetails
+
+    private val _genres = MutableLiveData<GenreList>()
+    val genres: LiveData<GenreList> = _genres
 
     init {
+        getGenres()
         getMovieList()
     }
 
@@ -46,10 +48,33 @@ class MoviesViewModel(val moviesRepository: MoviesRepository) : ViewModel() {
 
     fun searchMovie(query : String) {
         viewModelScope.launch() {
-            val response = moviesRepository.searchNews(query)
+            val response = moviesRepository.searchMovie(query)
             if(response.isSuccessful) {
                 response.body().let {
                     _searchMovie.value = it
+                }
+            }
+        }
+    }
+
+    fun getGenres() {
+        viewModelScope.launch {
+            val response = moviesRepository.getGenres()
+            if(response.isSuccessful) {
+                response.body()?.let {
+                    _genres.value = it
+                }
+            }
+        }
+    }
+
+    fun getGenreMoviesList(genreId: String) {
+        viewModelScope.launch {
+            val response = moviesRepository.getGenreMoviesList(genreId)
+            if(response.isSuccessful) {
+                response.body().let {
+                    _movieList.value = it
+                    println("asdasd")
                 }
             }
         }

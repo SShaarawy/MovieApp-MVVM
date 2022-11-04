@@ -34,7 +34,6 @@ class SavedMoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding.rvSavedMovies.apply {
             adapter = moviesAdapter
             layoutManager = LinearLayoutManager(context)

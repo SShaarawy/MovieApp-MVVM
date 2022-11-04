@@ -1,10 +1,12 @@
 package com.example.movieapp.adapters
 
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -38,7 +40,6 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
         return MoviesViewHolder(ItemMovieBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         val movie = differ.currentList[position]
 
@@ -51,22 +52,11 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
             binding.tvVote.text = itemView.resources.getString(R.string.vote,movie.vote_average.toString())
 
-            val layout = LayoutInflater.from(itemView.context).inflate(R.layout.item_dialog, null)
-
-            val alertDialog = AlertDialog.Builder(itemView.context)
-                .setView(layout)
-                .create()
-
-            tvTitle = layout.findViewById(R.id.tvTitle)
-            tvPublishedAt = layout.findViewById(R.id.tvPublishedAt)
-            tvDescription = layout.findViewById(R.id.tvDescription)
-
-            tvTitle.text = movie.title
-            tvPublishedAt.text = movie.release_date
-            tvDescription.text = movie.overview
-
             binding.btnInfo.setOnClickListener {
-                alertDialog.show()
+                val bundle = Bundle().apply {
+                    putSerializable("movie", movie)
+                }
+                itemView.findNavController().navigate(R.id.action_movieListFragment_to_movieOverviewFragment,bundle)
             }
             itemView.setOnClickListener {
                 onItemClickListener?.let { it(movie) }
