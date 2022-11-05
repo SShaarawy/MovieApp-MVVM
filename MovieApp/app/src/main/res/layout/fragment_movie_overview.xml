@@ -26,6 +26,20 @@
         android:textSize="30sp"
         tools:text="DATE" />
 
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:progressBackgroundTint="@color/dark_gray"
+        android:progressTint="@color/yellow"
+        android:rating="4"
+        android:scaleX=".8"
+        android:scaleY=".8"
+        android:stepSize=".5"
+        android:transformPivotX="0dp"
+        android:transformPivotY="0dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMovieGenres"
         android:layout_width="match_parent"

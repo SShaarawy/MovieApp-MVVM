@@ -1,19 +1,15 @@
 package com.example.movieapp.ui.fragments
 
-import android.net.Uri
 import android.os.Bundle
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.core.view.size
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.movieapp.R
 import com.example.movieapp.adapters.GenresAdapter
 import com.example.movieapp.databinding.FragmentMovieOverviewBinding
@@ -32,7 +28,7 @@ class MovieOverviewFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         binding = FragmentMovieOverviewBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -43,37 +39,41 @@ class MovieOverviewFragment : Fragment() {
         val movie = args.movie
 
         val collToolbar = requireActivity().findViewById<CollapsingToolbarLayout>(R.id.colltoolbar)
-        collToolbar.title = "Overview"
+        collToolbar.title = " "
 
         val bgCollToolbar = requireActivity().findViewById<ImageView>(R.id.bgCollToolbar)
         Glide.with(requireActivity())
-            .load("http://image.tmdb.org/t/p/w500/"+ movie.poster_path)
+            .load("http://image.tmdb.org/t/p/w500/" + movie.poster_path)
             .into(bgCollToolbar)
 
         binding.tvTitle.text = movie.title
-        binding.tvDate.text = "(${movie.release_date.substring(0, 4)})"
+        binding.tvDate.text = "(${movie.release_date.substring(0, 4)})   "+ movie.vote_average
         binding.tvOverview.text = movie.overview
+        binding.ratingBar.rating = (movie.vote_average / 2).toFloat()
 
         binding.rvMovieGenres.apply {
             adapter = genresAdapter
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
 
-        val list = movie.genre_ids
-        val list2 = sharedViewModel.genres.value?.genres
-        val list3 = mutableListOf<Genre>()
+        val idList = settingMovieGenres(movie.genre_ids)
+        genresAdapter.differ.submitList(idList)
 
-        for (int in list) {
-            for(item in list2!!){
-                if(int == item.id){
-                    list3.add(item)
+    }
+
+    private fun settingMovieGenres(genreIds: List<Int>) : List<Genre> {
+        val genres = sharedViewModel.genres.value?.genres
+        val idList = mutableListOf<Genre>()
+
+        if (genres != null) {
+            for (genreId in genreIds) {
+                for (genre in genres) {
+                    if (genreId == genre.id) {
+                        idList.add(genre)
+                    }
                 }
             }
         }
-
-        println("size"+list3.size)
-
-        genresAdapter.differ.submitList(list3)
-
+        return idList
     }
 }

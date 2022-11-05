@@ -47,7 +47,6 @@
     <fragment
         android:id="@+id/movieOverviewFragment"
         android:name="com.example.movieapp.ui.fragments.MovieOverviewFragment"
-        android:label="fragment_movie_overview"
         tools:layout="@layout/fragment_movie_overview" >
         <argument
             android:name="movie"

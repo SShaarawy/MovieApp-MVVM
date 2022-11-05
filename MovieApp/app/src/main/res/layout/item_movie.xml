@@ -16,28 +16,15 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars"/>
 
-    <TextView
-        android:id="@+id/tvVote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/background"
-        android:gravity="center"
-        android:text="@string/vote"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@id/ivMovieImage"
-        app:layout_constraintTop_toTopOf="@id/ivMovieImage" />
-
     <ImageButton
         android:id="@+id/btnInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="5dp"
         android:backgroundTint="@android:color/transparent"
         android:src="@drawable/ic_info"
-        android:tooltipText="About Movie"
-        app:layout_constraintEnd_toEndOf="@+id/ivMovieImage"
-        app:layout_constraintTop_toTopOf="@+id/ivMovieImage" />
+        app:layout_constraintEnd_toEndOf="@id/ivMovieImage"
+        app:layout_constraintTop_toTopOf="@id/ivMovieImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
