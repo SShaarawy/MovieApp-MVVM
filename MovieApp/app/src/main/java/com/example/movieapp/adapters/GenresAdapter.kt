@@ -3,11 +3,9 @@ package com.example.movieapp.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movieapp.R
 import com.example.movieapp.databinding.ItemGenreBinding
 import com.example.movieapp.model.Genre
 
@@ -31,7 +29,6 @@ class GenresAdapter : RecyclerView.Adapter<GenresAdapter.GenresViewHolder>() {
     val differ = AsyncListDiffer(this, DiffCallBack)
 
     inner class GenresViewHolder(val binding: ItemGenreBinding) : RecyclerView.ViewHolder(binding.root)
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenresViewHolder {
         return GenresViewHolder(ItemGenreBinding.inflate(LayoutInflater.from(parent.context)))

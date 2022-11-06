@@ -56,13 +56,11 @@ class MovieListFragment : Fragment() {
             val bundle = Bundle().apply {
                 putSerializable("movie", it)
             }
-            findNavController().navigate(R.id.action_movieListFragment_to_movieFragment, bundle)
+            findNavController().navigate(R.id.action_movieListFragment_to_movieOverviewFragment, bundle)
         }
 
         genresAdapter.setOnItemClickListener {
             sharedViewModel.getGenreMoviesList(it.toString())
         }
-
-
     }
 }

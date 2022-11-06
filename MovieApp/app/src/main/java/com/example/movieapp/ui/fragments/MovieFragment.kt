@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.example.movieapp.R
@@ -48,10 +46,6 @@ class MovieFragment : Fragment() {
                 println("asd"+it.imdb_id)
                 loadUrl("https://www.imdb.com/title/${it.imdb_id}")
             }
-        }
-        binding.fab.setOnClickListener {
-            sharedViewModel.saveMovie(movie)
-            Toast.makeText(requireContext(),"Movie is saved",Toast.LENGTH_SHORT).show()
         }
     }
 }

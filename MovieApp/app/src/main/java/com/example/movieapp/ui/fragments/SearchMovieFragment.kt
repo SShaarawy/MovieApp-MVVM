@@ -36,11 +36,9 @@ class SearchMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         binding.rvSearchMovies.apply {
             adapter = moviesAdapter
-            layoutManager = GridLayoutManager(context,2)
+            layoutManager = GridLayoutManager(context, 2)
         }
 
         var job: Job? = null
@@ -49,25 +47,25 @@ class SearchMovieFragment : Fragment() {
             job = MainScope().launch {
                 delay(500L)
                 it?.let {
-                    if(it.toString().isNotEmpty()) {
+                    if (it.toString().isNotEmpty()) {
                         sharedViewModel.searchMovie(it.toString())
                     }
                 }
             }
         }
 
-        moviesAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply {
-                putSerializable("movie", it)
-            }
-            findNavController().navigate(R.id.action_searchMovieFragment_to_movieFragment, bundle)
-        }
-
         sharedViewModel.searchMovie.observe(viewLifecycleOwner) {
             moviesAdapter.differ.submitList(it.results)
         }
 
-    }
+        moviesAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("movie", it)
+            }
+            findNavController().navigate(R.id.action_searchMovieFragment_to_movieOverviewFragment,
+                bundle)
+        }
 
+    }
 
 }

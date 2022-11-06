@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.adapters.MoviesAdapter
@@ -25,9 +25,9 @@ class SavedMoviesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
 
-        binding = FragmentSavedMoviesBinding.inflate(layoutInflater, container,false)
+        binding = FragmentSavedMoviesBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -36,17 +36,25 @@ class SavedMoviesFragment : Fragment() {
 
         binding.rvSavedMovies.apply {
             adapter = moviesAdapter
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context,2)
+        }
+
+        swipeLeftRightMovements(view)
+
+        sharedViewModel.getSavedMovies().observe(viewLifecycleOwner) {
+            moviesAdapter.differ.submitList(it)
         }
 
         moviesAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putSerializable("movie", it)
             }
-            findNavController().navigate(R.id.action_savedMoviesFragment_to_movieFragment, bundle)
+            findNavController().navigate(R.id.action_savedMoviesFragment_to_movieOverviewFragment,
+                bundle)
         }
+    }
 
-        //Swipping left or right movements
+    private fun swipeLeftRightMovements(view: View) {
         val itemTouchHelperCallBack = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
@@ -73,11 +81,6 @@ class SavedMoviesFragment : Fragment() {
                 }
             }
         }
-
         ItemTouchHelper(itemTouchHelperCallBack).attachToRecyclerView(binding.rvSavedMovies)
-
-        sharedViewModel.getSavedMovies().observe(viewLifecycleOwner) {
-            moviesAdapter.differ.submitList(it)
-        }
     }
 }

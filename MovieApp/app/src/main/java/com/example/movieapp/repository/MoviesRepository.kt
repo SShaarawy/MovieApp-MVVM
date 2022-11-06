@@ -28,6 +28,10 @@ class MoviesRepository(private val db: MovieDatabase) {
         return retrofitService.getGenres()
     }
 
+    fun isExists(id: Int): Flow<Int> {
+        return db.getMovieDao().isExists(id)
+    }
+
     suspend fun upsert(movie: Result) {
         db.getMovieDao().upsert(movie)
     }

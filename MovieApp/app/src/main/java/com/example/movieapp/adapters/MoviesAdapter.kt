@@ -1,16 +1,12 @@
 package com.example.movieapp.adapters
 
-
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.example.movieapp.R
 import com.example.movieapp.databinding.ItemMovieBinding
 import com.example.movieapp.model.Result
 
@@ -46,29 +42,20 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
                 .transform(RoundedCorners(90))
                 .into(binding.ivMovieImage)
 
-            binding.btnInfo.setOnClickListener {
-                val bundle = Bundle().apply {
-                    putSerializable("movie", movie)
-                }
-                itemView.findNavController()
-                    .navigate(R.id.action_movieListFragment_to_movieOverviewFragment, bundle)
+            binding.ivMovieImage.setOnClickListener {
+               onItemClickListener?.let { it(movie) }
             }
-
-            itemView.setOnClickListener {
-                onItemClickListener?.let { it(movie) }
-            }
-
         }
+    }
+
+    override fun getItemCount(): Int {
+        return differ.currentList.size
     }
 
     private var onItemClickListener: ((Result) -> Unit)? = null
 
     fun setOnItemClickListener(listener: (Result) -> Unit) {
         onItemClickListener = listener
-    }
-
-    override fun getItemCount(): Int {
-        return differ.currentList.size
     }
 
 }

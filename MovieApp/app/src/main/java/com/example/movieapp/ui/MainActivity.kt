@@ -2,7 +2,6 @@ package com.example.movieapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +13,6 @@ import com.example.movieapp.R
 import com.example.movieapp.databinding.ActivityMainBinding
 import com.example.movieapp.db.MovieDatabase
 import com.example.movieapp.repository.MoviesRepository
-import com.example.movieapp.ui.fragments.SearchMovieFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(MoviesViewModel::class.java)
 
         setupToolbar()
-
     }
 
     private fun setupToolbar() {

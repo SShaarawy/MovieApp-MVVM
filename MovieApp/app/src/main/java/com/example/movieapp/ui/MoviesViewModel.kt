@@ -81,6 +81,10 @@ class MoviesViewModel(val moviesRepository: MoviesRepository) : ViewModel() {
     }
 
 
+    fun isExists(id: Int) : LiveData<Int> {
+        return moviesRepository.isExists(id).asLiveData()
+    }
+
     fun saveMovie(movie: Result) {
         viewModelScope.launch {
             moviesRepository.upsert(movie)
